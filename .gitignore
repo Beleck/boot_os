@@ -54,3 +54,6 @@ dkms.conf
 
 # Docs
 *.pdf
+
+# GDB
+.gdb_history
