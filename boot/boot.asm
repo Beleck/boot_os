@@ -1,3 +1,5 @@
+%include 'header.asm'
+
 bits 16
 org 0x0000
 
@@ -13,7 +15,7 @@ times 0x0200 * 0x6 - ($ - $$) db 0
 incbin 'bin/bootloader.bin'
 
 ;reserved sectors
-times 0x0200 * 0x0020 - ($ - $$) db 0
+times BYTES_PER_SECTOR * RESERVED_SECTORS - ($ - $$) db 0
 
 ;File Allocation table
 dd 0x0ffffff8
