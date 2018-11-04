@@ -37,6 +37,9 @@
 *.hex
 *.bin
 
+# Disks image
+*.img
+
 # Debug files
 *.dSYM/
 *.su
