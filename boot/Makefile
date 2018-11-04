@@ -7,15 +7,17 @@ SRC=$(wildcard *.asm)
 BINARIES=$(BIN_DIR)/$(addsuffix .bin,$(basename $(SRC)))
 
 .PHONY: all
-all: $(BIN_DIR)/$(BOOT_IMG).img
+all: $(BIN_DIR) $(BIN_DIR)/$(BOOT_IMG).img
 
 $(BIN_DIR)/$(BOOT_LOADER).bin: $(SRC)
-	@mkdir -p $(BIN_DIR)
 	$(NASM) $(BOOT_LOADER).asm $(NASM_OPTS) -o $@
 
 $(BIN_DIR)/$(BOOT_IMG).img: $(BIN_DIR)/$(BOOT_LOADER).bin
 	$(NASM) $(BOOT_IMG).asm $(NASM_OPTS) -o $@
 
+$(BIN_DIR):
+	@mkdir -p $(BIN_DIR)
+
 .PHONY: clean
 clean:
-	rm -f $(BIN_DIR)/*.bin
+	rm -rf $(BIN_DIR)/
